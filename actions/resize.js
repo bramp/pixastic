@@ -11,6 +11,16 @@ Pixastic.Actions.resize = {
 			var height = parseInt(params.options.height,10);
 			var canvas = params.canvas;
 
+			if (width == -1 && height == -1)
+				return false;
+
+			// Maintain aspect ratio
+			if (height == -1) {
+				height = (width / canvas.width) * canvas.height;
+			} else if (width == -1) {
+				width = (height / canvas.height) * canvas.width;
+			}
+
 			if (width < 1) width = 1;
 			if (width < 2) width = 2;
 
